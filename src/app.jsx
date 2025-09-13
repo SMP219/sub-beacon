@@ -79,10 +79,10 @@ export default function App() {
     setShowLogoutModal(false);
   };
 
-  const handleManageSubscription = (subscriptionId) => {
-    console.log(`Managing subscription ${subscriptionId}`);
-    // TODO: Navigate to manage subscription page with subscription ID
-    alert(`Navigate to manage subscription ${subscriptionId}`);
+  const handleManageSubscription = () => {
+    console.log("Navigate to manage subscription page");
+    // TODO: Navigate to manage subscription page
+    alert("Navigate to manage subscription page");
   };
 
   const getStatusBadgeClass = (status) => {
@@ -119,12 +119,20 @@ export default function App() {
         <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
           My Subscriptions
         </h1>
-        <button
-          onClick={() => setShowLogoutModal(true)}
-          className="text-foreground/80 hover:text-destructive font-medium transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
-        >
-          Logout
-        </button>
+        <div className="flex items-center gap-4">
+          <button
+            onClick={handleManageSubscription}
+            className="btn-primary px-6 py-2 rounded-lg font-medium transition-all duration-300 hover:scale-105"
+          >
+            Manage Subscriptions
+          </button>
+          <button
+            onClick={() => setShowLogoutModal(true)}
+            className="text-foreground/80 hover:text-destructive font-medium transition-colors px-4 py-2 rounded-lg hover:bg-white/10"
+          >
+            Logout
+          </button>
+        </div>
       </motion.div>
 
       {/* Main Content */}
@@ -185,14 +193,6 @@ export default function App() {
                       <span className="text-foreground">{formatDate(subscription.lastRenewedDate)}</span>
                     </div>
                   </div>
-
-                  {/* Manage Button */}
-                  <button
-                    onClick={() => handleManageSubscription(subscription.id)}
-                    className="btn-primary w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 hover:scale-105"
-                  >
-                    Manage Plan
-                  </button>
                 </motion.div>
               ))}
             </motion.div>
